@@ -1,0 +1,29 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup NodeJs
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: 'package.json'
+
+      # 依存の解決
+      - name: Install node_modules
+        run: yarn install --frozen-lockfile
+
+      - name: build storybook
+        run: yarn build-storybook
+
+      - name: deploy storybook
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: gh-pages
+          folder: storybook-static

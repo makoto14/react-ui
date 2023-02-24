@@ -1,0 +1,30 @@
+name: check
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: 'package.json'
+
+      - name: Install
+        run: yarn install --frozen-lockfile
+
+      - name: Lint spell
+        run: yarn lint:spell
+
+      - name: Lint es
+        run: yarn lint:es
+
+      - name: Lint ts
+        run: yarn lint:ts
+
+      - name: Test
+        run: yarn test
