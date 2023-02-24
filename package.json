@@ -63,6 +63,9 @@
     "typescript": "^4.9.5",
     "webpack": "^5.75.0"
   },
+  "resolutions": {
+    "@types/react": "^18.0.28"
+  },
   "lint-staged": {
     "*.{ts,tsx}": [
       "prettier --write",
