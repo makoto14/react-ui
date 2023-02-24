@@ -6,7 +6,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
-    "types": ["react"],
+    "types": ["react", "node", "jest", "@types/testing-library__jest-dom"],
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
