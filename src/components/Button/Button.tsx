@@ -17,7 +17,7 @@ export const Button: FC<ButtonProps> = ({
     switch (color) {
       case 'primary':
         return css`
-          background-color: #4285f4;
+          background-color: blue;
           color: #fff;
         `;
       case 'default':
@@ -37,9 +37,9 @@ export const Button: FC<ButtonProps> = ({
         border: none;
         cursor: pointer;
         border-radius: 8px;
-        &:hover {
-          box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px -1px,
-            rgb(0 0 0 / 14%) 0px 4px 5px 0px, rgb(0 0 0 / 12%) 0px 1px 10px 0px;
+
+        &:active {
+          box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);
         }
       `}
       {...props}

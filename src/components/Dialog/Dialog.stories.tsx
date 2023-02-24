@@ -21,7 +21,7 @@ export const Base: Story = () => {
         onOpenChange={setBool}
         title="Hello react"
         action={
-          <Stack direction="row" justifyContent="flex-end" spacing={2}>
+          <Stack direction="row" justifyContent="flex-end" spacing={1}>
             <Button color="default" onClick={() => handleFalse()}>
               Cancel
             </Button>

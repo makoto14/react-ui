@@ -12,10 +12,10 @@ export const Base: Story = () => {
   return (
     <Fragment>
       <Box
-        css={css({
-          backgroundColor: 'red',
-          width: '30px',
-        })}
+        css={css`
+          background-color: red;
+          width: 30px;
+        `}
       >
         Box
       </Box>
