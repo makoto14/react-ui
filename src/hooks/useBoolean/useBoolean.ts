@@ -1,7 +1,19 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export const useBoolean = (initial = false) => {
-  const [val, setVal] = useState<boolean>(initial);
+  const [bool, setBool] = useState<boolean>(initial);
 
-  return { val, setVal };
+  const handleTrue = useCallback(() => {
+    setBool(true);
+  }, []);
+
+  const handleFalse = useCallback(() => {
+    setBool(false);
+  }, []);
+
+  const toggleBool = useCallback(() => {
+    setBool((val) => !val);
+  }, []);
+
+  return { bool, setBool, handleTrue, handleFalse, toggleBool };
 };

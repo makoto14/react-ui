@@ -5,16 +5,42 @@ describe('useBoolean', () => {
   test('初期値の確認', () => {
     const { result } = renderHook(() => useBoolean());
 
-    expect(result.current.val).toBeFalsy();
+    expect(result.current.bool).toBeFalsy();
   });
 
   test('変更したあとの確認', () => {
     const { result } = renderHook(() => useBoolean());
 
     act(() => {
-      result.current.setVal(true);
+      result.current.setBool(true);
     });
 
-    expect(result.current.val).toBeTruthy();
+    expect(result.current.bool).toBeTruthy();
+  });
+
+  test('handleTrue', () => {
+    const { result } = renderHook(() => useBoolean());
+
+    act(() => {
+      result.current.handleTrue();
+    });
+
+    expect(result.current.bool).toBeTruthy();
+  });
+
+  test('handleFalse', () => {
+    const { result } = renderHook(() => useBoolean());
+
+    act(() => {
+      result.current.handleTrue();
+    });
+
+    expect(result.current.bool).toBeTruthy();
+
+    act(() => {
+      result.current.handleFalse();
+    });
+
+    expect(result.current.bool).toBeFalsy();
   });
 });
