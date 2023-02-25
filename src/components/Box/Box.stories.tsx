@@ -1,6 +1,5 @@
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import { ComponentMeta, Story } from '@storybook/react';
-import { Fragment } from 'react';
 import { Box } from './Box';
 
 export default {
@@ -9,16 +8,17 @@ export default {
 } as ComponentMeta<typeof Box>;
 
 export const Base: Story = () => {
+  const theme = useTheme();
+
   return (
-    <Fragment>
-      <Box
-        css={css`
-          background-color: red;
-          width: 30px;
-        `}
-      >
-        Box
-      </Box>
-    </Fragment>
+    <Box
+      css={css`
+        background-color: ${theme.colors.primary.main};
+        color: ${theme.colors.grey[0]};
+        width: 30px;
+      `}
+    >
+      Box
+    </Box>
   );
 };

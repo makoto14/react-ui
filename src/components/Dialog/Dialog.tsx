@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import {
   Content,
   Description,
@@ -25,12 +25,13 @@ export const Dialog: FC<DialogProps> = ({
   children,
   action,
 }) => {
+  const theme = useTheme();
   return (
     <Root open={open} onOpenChange={onOpenChange}>
       <Portal>
         <Overlay
           css={css`
-            background-color: ${rgba('#6F7E90', 0.2)};
+            background-color: ${rgba(theme.colors.grey[400], 0.2)};
             backdrop-filter: blur(4px);
             position: fixed;
             inset: 0;
@@ -38,8 +39,8 @@ export const Dialog: FC<DialogProps> = ({
         />
         <Content
           css={css`
-            background-color: white;
-            border-radius: 6;
+            background-color: ${theme.colors.grey[0]};
+            border-radius: ${theme.radius.base}px;
             box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
               hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
             position: fixed;

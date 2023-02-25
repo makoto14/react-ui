@@ -1,50 +1,93 @@
-import { css } from '@emotion/react';
-import { FC, useMemo } from 'react';
+import { css, useTheme } from '@emotion/react';
+import { rgba } from 'polished';
+import { ButtonHTMLAttributes, forwardRef, useMemo } from 'react';
 
-export type ButtonProps = Props & React.ButtonHTMLAttributes<HTMLButtonElement>;
+export type ButtonProps = Props &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof Props>;
 
-export type Props = {
+type Props = {
   children: string;
-  color?: 'primary' | 'default';
+  color?: 'primary' | 'neutral' | 'danger' | 'warning' | 'success';
+  variant?: 'solid' | 'soft' | 'outlined' | 'text';
 };
 
-export const Button: FC<ButtonProps> = ({
-  children,
-  color = 'primary',
-  ...props
-}) => {
-  const colorCss = useMemo(() => {
-    switch (color) {
-      case 'primary':
-        return css`
-          background-color: blue;
-          color: #fff;
-        `;
-      case 'default':
-      default:
-        return css`
-          background-color: lightgrey;
-          color: #333;
-        `;
-    }
-  }, [color]);
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button(
+    { children, color = 'primary', variant = 'solid', ...props },
+    ref
+  ) {
+    const theme = useTheme();
 
-  return (
-    <button
-      css={css`
-        ${colorCss}
-        padding: 8px;
-        border: none;
-        cursor: pointer;
-        border-radius: 8px;
+    const colorStyle = useMemo(() => {
+      switch (color) {
+        case 'neutral':
+          return {
+            main: theme.colors.neutral.main,
+            sub: theme.colors.neutral.sub,
+          };
+        case 'danger':
+          return {
+            main: theme.colors.danger.main,
+            sub: theme.colors.danger.sub,
+          };
+        case 'warning':
+          return {
+            main: theme.colors.warning.main,
+            sub: theme.colors.warning.sub,
+          };
+        case 'primary':
+        default:
+          return {
+            main: theme.colors.primary.main,
+            sub: theme.colors.primary.sub,
+          };
+      }
+    }, [color, theme]);
 
-        &:active {
-          box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);
-        }
-      `}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
+    const variantCss = useMemo(() => {
+      switch (variant) {
+        case 'outlined':
+          return css`
+            background-color: transparent;
+            color: ${colorStyle.main};
+            border: 1px solid ${colorStyle.main};
+          `;
+        case 'soft':
+          return css`
+            background-color: ${colorStyle.sub};
+            color: ${colorStyle.main};
+          `;
+        case 'text':
+          return css`
+            background-color: transparent;
+            color: ${colorStyle.main};
+          `;
+        case 'solid':
+        default:
+          return css`
+            background-color: ${colorStyle.main};
+            color: ${theme.colors.grey[0]};
+          `;
+      }
+    }, [colorStyle, theme, variant]);
+
+    return (
+      <button
+        css={css`
+          border: none;
+          padding: 8px;
+          cursor: pointer;
+          border-radius: ${theme.radius.base}px;
+          ${variantCss}
+          &:active {
+            box-shadow: 0 0 0 0.25rem ${rgba(theme.colors.blue[500], 0.5)};
+          }
+        `}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+);
