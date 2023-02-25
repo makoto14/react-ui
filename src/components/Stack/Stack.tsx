@@ -1,4 +1,4 @@
-import { css, SerializedStyles } from '@emotion/react';
+import { css, SerializedStyles, useTheme } from '@emotion/react';
 import { forwardRef, HTMLAttributes, ReactNode, useMemo } from 'react';
 
 export type StackProps = HTMLAttributes<HTMLDivElement> & {
@@ -28,8 +28,9 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack(
   },
   ref
 ) {
+  const theme = useTheme();
   const spacingCss = useMemo(() => {
-    const space = spacing * 8;
+    const space = spacing * theme.spacing.base;
 
     switch (direction) {
       case 'row':
@@ -54,7 +55,7 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack(
           }
         `;
     }
-  }, [direction, spacing]);
+  }, [direction, spacing, theme]);
 
   return (
     <div

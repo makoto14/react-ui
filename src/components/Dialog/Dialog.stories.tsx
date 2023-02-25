@@ -22,7 +22,11 @@ export const Base: Story = () => {
         title="Hello react"
         action={
           <Stack direction="row" justifyContent="flex-end" spacing={1}>
-            <Button color="default" onClick={() => handleFalse()}>
+            <Button
+              color="neutral"
+              variant="soft"
+              onClick={() => handleFalse()}
+            >
               Cancel
             </Button>
             <Button color="primary" onClick={() => handleFalse()}>
