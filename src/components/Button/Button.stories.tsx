@@ -1,5 +1,7 @@
+import { css, useTheme } from '@emotion/react';
 import { action } from '@storybook/addon-actions';
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react';
+import { Box } from '../Box';
 import { Stack } from '../Stack';
 import { Button, ButtonProps } from './Button';
 
@@ -31,18 +33,47 @@ const colors: ButtonProps['color'][] = [
   'warning',
 ];
 
-export const Color: Story = () => {
+export const Color: Story = () => (
+  <Stack direction="column" spacing={2}>
+    {colors.map((color) => (
+      <Stack key={color} direction="row" spacing={2}>
+        {variants.map((variant) => (
+          <Button key={variant} color={color} variant={variant}>
+            {`${color}-${variant}`}
+          </Button>
+        ))}
+      </Stack>
+    ))}
+  </Stack>
+);
+
+export const DisabledButton: Story = () => (
+  <Stack direction="column" spacing={2}>
+    {colors.map((color) => (
+      <Stack key={color} direction="row" spacing={2}>
+        {variants.map((variant) => (
+          <Button key={variant} color={color} variant={variant} disabled>
+            {`${color}-${variant}`}
+          </Button>
+        ))}
+      </Stack>
+    ))}
+  </Stack>
+);
+
+export const Size: Story = () => {
+  const theme = useTheme();
   return (
-    <Stack direction="column" spacing={2}>
-      {colors.map((color) => (
-        <Stack key={color} direction="row" spacing={2}>
-          {variants.map((variant) => (
-            <Button key={variant} color={color} variant={variant}>
-              {`${color}-${variant}`}
-            </Button>
-          ))}
-        </Stack>
-      ))}
-    </Stack>
+    <Box
+      css={css`
+        & button {
+          margin: ${theme.spacing.base}px;
+        }
+      `}
+    >
+      <Button size="lg">lg</Button>
+      <Button size="md">md</Button>
+      <Button size="sm">sm</Button>
+    </Box>
   );
 };

@@ -68,34 +68,44 @@ export const Red = {
   900: '#b71c1c',
 } as const satisfies ColorScale;
 
+const DARK_COLOR_SCALE = 900;
 const MAIN_COLOR_SCALE = 800;
-const SUB_COLOR_SCALE = 100;
+const LIGHT_COLOR_SCALE = 100;
 
 export const theme: Theme = {
   colors: {
+    // semantic
     primary: {
+      light: Blue[LIGHT_COLOR_SCALE],
+      dark: Blue[DARK_COLOR_SCALE],
       main: Blue[MAIN_COLOR_SCALE],
-      sub: Blue[SUB_COLOR_SCALE],
     },
     success: {
+      light: Green[LIGHT_COLOR_SCALE],
+      dark: Green[DARK_COLOR_SCALE],
       main: Green[MAIN_COLOR_SCALE],
-      sub: Green[SUB_COLOR_SCALE],
     },
     warning: {
+      light: Orange[LIGHT_COLOR_SCALE],
+      dark: Orange[DARK_COLOR_SCALE],
       main: Orange[MAIN_COLOR_SCALE],
-      sub: Orange[SUB_COLOR_SCALE],
     },
     danger: {
+      light: Red[LIGHT_COLOR_SCALE],
+      dark: Red[DARK_COLOR_SCALE],
       main: Red[MAIN_COLOR_SCALE],
-      sub: Red[SUB_COLOR_SCALE],
     },
     neutral: {
+      light: Grey[LIGHT_COLOR_SCALE],
+      dark: Grey[DARK_COLOR_SCALE],
       main: Grey[MAIN_COLOR_SCALE],
-      sub: Grey[SUB_COLOR_SCALE],
     },
+    // primitive
     grey: Grey,
     blue: Blue,
     green: Green,
+    orange: Orange,
+    red: Red,
   },
   spacing: {
     base: 8,

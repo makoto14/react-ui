@@ -13,6 +13,8 @@ declare module '@emotion/react' {
       grey: ColorScale;
       blue: ColorScale;
       green: ColorScale;
+      orange: ColorScale;
+      red: ColorScale;
     };
     spacing: {
       base: number;
@@ -32,8 +34,9 @@ declare module '@emotion/react' {
 }
 
 export type ColorPalette = {
+  light: string;
   main: string;
-  sub: string;
+  dark: string;
 };
 
 export type ColorScale = {
