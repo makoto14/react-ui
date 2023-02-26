@@ -36,6 +36,7 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack(
       case 'row':
         return css`
           display: flex;
+          flex-direction: row;
           > :nth-of-type(even) {
             margin-left: ${space}px;
           }
@@ -46,7 +47,8 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack(
       case 'column':
       default:
         return css`
-          display: block;
+          display: flex;
+          flex-direction: column;
           > :nth-of-type(even) {
             margin-top: ${space}px;
           }
