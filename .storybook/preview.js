@@ -1,3 +1,4 @@
+import { withScreenshot } from 'storycap';
 import { theme } from '../src/theme';
 import { ThemeProvider } from '@emotion/react';
 
@@ -17,4 +18,5 @@ export const decorators = [
       <Story />
     </ThemeProvider>
   ),
+  withScreenshot,
 ];
