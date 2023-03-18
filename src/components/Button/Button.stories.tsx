@@ -1,6 +1,12 @@
 import { css, useTheme } from '@emotion/react';
 import { action } from '@storybook/addon-actions';
-import { ComponentMeta, ComponentStory, StoryFn } from '@storybook/react';
+import {
+  ComponentMeta,
+  ComponentStory,
+  StoryFn,
+  StoryObj,
+} from '@storybook/react';
+import { AiOutlineClose } from 'react-icons/ai';
 import { Box } from '../Box';
 import { Stack } from '../Stack';
 import { Button, ButtonProps } from './Button';
@@ -80,4 +86,9 @@ export const Size: StoryFn = () => {
       <Button size="sm">sm</Button>
     </Box>
   );
+};
+export const IconButton: StoryObj = {
+  args: {
+    children: <AiOutlineClose />,
+  },
 };

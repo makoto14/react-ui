@@ -1,13 +1,13 @@
 import { css, useTheme } from '@emotion/react';
 import { lighten, rgba } from 'polished';
-import { ButtonHTMLAttributes, forwardRef, useMemo } from 'react';
+import { ButtonHTMLAttributes, ReactNode, forwardRef, useMemo } from 'react';
 import { Size } from '../../types';
 
 export type ButtonProps = Props &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof Props>;
 
 type Props = {
-  children: string;
+  children: ReactNode;
   color?: 'primary' | 'neutral' | 'danger' | 'warning' | 'success';
   variant?: 'solid' | 'soft' | 'outlined' | 'text';
   disabled?: boolean;
@@ -147,6 +147,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         css={css`
           border: none;
           cursor: pointer;
+          display: flex;
           border-radius: ${theme.radius.base}px;
           ${variantCss}
           ${CommonDisabledStyle}
