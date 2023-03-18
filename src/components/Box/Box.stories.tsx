@@ -13,9 +13,9 @@ export const Base: StoryFn<BoxProps> = () => {
   return (
     <Box
       css={css`
-        background-color: ${theme.colors.primary.main};
+        background-color: hotpink;
         color: ${theme.colors.grey[0]};
-        width: 30px;
+        width: 32px;
       `}
     >
       Box
