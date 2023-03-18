@@ -22,6 +22,8 @@
     "test:watch": "jest --watch",
     "storycap": "rimraf ./__screenshots__ && storycap -C puppeteer --serverCmd \"start-storybook -p 6006 --quiet\" http://localhost:6006 --serverTimeout 60000 --delay 1000",
     "reg-suit": "reg-suit run",
+    "release": "standard-version",
+    "release:alpha": "standard-version --prerelease alpha",
     "verup-pkg": "ncu -i --format group"
   },
   "devDependencies": {
