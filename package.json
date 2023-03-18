@@ -7,7 +7,7 @@
   "author": "makoto14 <makoto.sasuke@gmail.com>",
   "license": "MIT",
   "files": [
-    "index.{js,d.ts}",
+    "dist/index.{js,d.ts}",
     "dist/**/*.{js,d.ts}"
   ],
   "scripts": {
