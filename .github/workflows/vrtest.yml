@@ -1,0 +1,122 @@
+name: Visual Regression Test
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, reopened, synchronize]
+    paths-ignore:
+      - '**.md'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prepare:
+    name: Prepare main branch screenshots
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: 'package.json'
+          cache: 'yarn'
+
+      - name: check commit hash
+        id: commithash
+        run: echo "hash=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+      - name: restore reg-suit screenshots
+        uses: actions/cache@v3
+        with:
+          path: .reg/
+          key: reg-${{ steps.commithash.outputs.hash }}-v7
+
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v2
+        with:
+          files: ".reg/"
+
+      - name: Install fonts-noto
+        run: |
+          sudo apt-get update
+          sudo apt-get install fonts-noto
+
+      - name: yarn install main branch
+        if: steps.check_files.outputs.files_exists == 'false'
+        run: yarn install --frozen-lockfile
+
+      - name: screenshots main branch
+        if: steps.check_files.outputs.files_exists == 'false'
+        run: yarn storycap
+
+      - name: run reg-suit main branch
+        if: steps.check_files.outputs.files_exists == 'false'
+        run: yarn reg-suit
+
+      - name: set reg-suit expected
+        if: steps.check_files.outputs.files_exists == 'false'
+        run: |
+          rm -rf .reg/expected/
+          mv -f .reg/actual/ .reg/expected/
+          mkdir .reg/actual/
+          ls -l .reg/
+
+      - name: upload .reg/
+        uses: actions/upload-artifact@v3
+        with:
+          name: reg-expected
+          path: .reg/
+
+  run:
+    name: Run reg-suit
+    needs: prepare
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: 'package.json'
+          cache: 'yarn'
+
+      - name: Install fonts-noto
+        run: |
+          sudo apt-get update
+          sudo apt-get install fonts-noto
+
+      - name: workaround for detached HEAD
+        run: |
+          git checkout ${GITHUB_HEAD_REF#refs/heads/} || git checkout -b ${GITHUB_HEAD_REF#refs/heads/} && git pull
+
+      - name: yarn install
+        run: yarn install --frozen-lockfile
+
+      - name: load reg-suit expecteds
+        uses: actions/download-artifact@v3
+        with:
+          name: reg-expected
+          path: .reg/
+
+      - name: screenshots
+        run: yarn storycap
+
+      - name: run reg-suit
+        run: yarn reg-suit
+
+      - name: upload reg-suit
+        uses: actions/upload-artifact@v3
+        with:
+          name: visual regression test result
+          path: .reg/

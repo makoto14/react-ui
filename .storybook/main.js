@@ -8,6 +8,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-a11y',
     '@storybook/addon-interactions',
+    'storycap',
   ],
   framework: '@storybook/react',
   babel: async (options) => ({
