@@ -1,6 +1,6 @@
 import { css, useTheme } from '@emotion/react';
 import { action } from '@storybook/addon-actions';
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react';
+import { ComponentMeta, ComponentStory, StoryFn } from '@storybook/react';
 import { Box } from '../Box';
 import { Stack } from '../Stack';
 import { Button, ButtonProps } from './Button';
@@ -33,35 +33,39 @@ const colors: ButtonProps['color'][] = [
   'warning',
 ];
 
-export const Color: Story = () => (
-  <Stack direction="column" spacing={2}>
-    {colors.map((color) => (
-      <Stack key={color} direction="row" spacing={2}>
-        {variants.map((variant) => (
-          <Button key={variant} color={color} variant={variant}>
-            {`${color}-${variant}`}
-          </Button>
-        ))}
-      </Stack>
-    ))}
-  </Stack>
-);
+export const Color: StoryFn = () => {
+  return (
+    <Stack direction="column" spacing={2}>
+      {colors.map((color) => (
+        <Stack key={color} direction="row" spacing={2}>
+          {variants.map((variant) => (
+            <Button key={variant} color={color} variant={variant}>
+              {`${color}-${variant}`}
+            </Button>
+          ))}
+        </Stack>
+      ))}
+    </Stack>
+  );
+};
 
-export const DisabledButton: Story = () => (
-  <Stack direction="column" spacing={2}>
-    {colors.map((color) => (
-      <Stack key={color} direction="row" spacing={2}>
-        {variants.map((variant) => (
-          <Button key={variant} color={color} variant={variant} disabled>
-            {`${color}-${variant}`}
-          </Button>
-        ))}
-      </Stack>
-    ))}
-  </Stack>
-);
+export const DisabledButton: StoryFn = () => {
+  return (
+    <Stack direction="column" spacing={2}>
+      {colors.map((color) => (
+        <Stack key={color} direction="row" spacing={2}>
+          {variants.map((variant) => (
+            <Button key={variant} color={color} variant={variant} disabled>
+              {`${color}-${variant}`}
+            </Button>
+          ))}
+        </Stack>
+      ))}
+    </Stack>
+  );
+};
 
-export const Size: Story = () => {
+export const Size: StoryFn = () => {
   const theme = useTheme();
   return (
     <Box

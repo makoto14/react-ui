@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react';
+import { ComponentMeta, ComponentStory, StoryFn } from '@storybook/react';
 import { Fragment } from 'react';
 import { Box } from '../Box';
 import { Stack } from './Stack';
@@ -26,7 +26,7 @@ controls.args = {
   )),
 };
 
-export const Base: Story = () => {
+export const Base: StoryFn = () => {
   return (
     <Fragment>
       <Stack spacing={1} direction="row">

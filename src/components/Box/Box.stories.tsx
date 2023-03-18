@@ -1,13 +1,13 @@
 import { css, useTheme } from '@emotion/react';
-import { ComponentMeta, Story } from '@storybook/react';
-import { Box } from './Box';
+import { Meta, StoryFn } from '@storybook/react';
+import { Box, BoxProps } from './Box';
 
 export default {
   title: 'components/Box',
   component: Box,
-} as ComponentMeta<typeof Box>;
+} as Meta<typeof Box>;
 
-export const Base: Story = () => {
+export const Base: StoryFn<BoxProps> = () => {
   const theme = useTheme();
 
   return (
