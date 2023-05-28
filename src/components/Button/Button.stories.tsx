@@ -69,7 +69,7 @@ export const Size: StoryFn = () => {
   const theme = useTheme();
   return (
     <Box
-      css={css`
+      sx={css`
         & button {
           margin: ${theme.spacing.base}px;
         }

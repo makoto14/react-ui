@@ -43,7 +43,7 @@
     "@storybook/addon-interactions": "^7.0.18",
     "@storybook/addon-links": "^7.0.18",
     "@storybook/react": "^7.0.18",
-    "@storybook/react-webpack5": "^7.0.18",
+    "@storybook/react-vite": "^7.0.18",
     "@storybook/testing-library": "^0.1.0",
     "@swc/core": "^1.3.60",
     "@swc/jest": "^0.2.26",
@@ -82,7 +82,7 @@
     "storybook": "^7.0.18",
     "storycap": "^4.1.1",
     "typescript": "^5.0.4",
-    "webpack": "^5.84.1"
+    "vite": "^4.3.9"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.4",

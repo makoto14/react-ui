@@ -12,7 +12,7 @@ export const Base: StoryFn<BoxProps> = () => {
 
   return (
     <Box
-      css={css`
+      sx={css`
         background-color: ${theme.colors.primary.main};
         color: ${theme.colors.grey[0]};
         width: 30px;
