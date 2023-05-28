@@ -1,4 +1,4 @@
-import { ComponentMeta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Fragment } from 'react';
 import { useBoolean } from '../../hooks/useBoolean/useBoolean';
 import { Button } from '../Button';
@@ -8,7 +8,7 @@ import { Dialog } from './Dialog';
 export default {
   title: 'components/Dialog',
   component: Dialog,
-} as ComponentMeta<typeof Dialog>;
+} as Meta<typeof Dialog>;
 
 export const Base: StoryFn = () => {
   const { bool, setBool, handleTrue, handleFalse } = useBoolean();

@@ -1,11 +1,6 @@
 import { css, useTheme } from '@emotion/react';
 import { action } from '@storybook/addon-actions';
-import {
-  ComponentMeta,
-  ComponentStory,
-  StoryFn,
-  StoryObj,
-} from '@storybook/react';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { Box } from '../Box';
 import { Stack } from '../Stack';
@@ -14,15 +9,14 @@ import { Button, ButtonProps } from './Button';
 export default {
   title: 'components/Button',
   component: Button,
-} as ComponentMeta<typeof Button>;
+} as Meta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
-
-export const controls = Template.bind({});
-controls.args = {
-  children: 'button',
-  onClick: action('click'),
-  variant: 'solid',
+export const controls: StoryObj = {
+  args: {
+    children: 'button',
+    onClick: action('click'),
+    variant: 'solid',
+  },
 };
 
 const variants: ButtonProps['variant'][] = [
