@@ -5,6 +5,10 @@ module.exports = {
     name: '@storybook/react-webpack5',
     options: {}
   },
+  babel: async (options) => ({
+    ...options,
+    presets: [...options.presets, '@emotion/babel-preset-css-prop'],
+  }),
   docs: {
     autodocs: true
   }
