@@ -1,1 +1,1 @@
-export type Size = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+export * from './Size';

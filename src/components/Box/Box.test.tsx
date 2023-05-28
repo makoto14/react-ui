@@ -1,15 +1,15 @@
-import { render, screen } from '@testing-library/react';
-import { Button } from '../Button';
+import { screen } from '@testing-library/react';
+import { customRender } from '../../test';
 import { Box } from './Box';
 
-describe(Button.name, () => {
+describe('Box', () => {
   test('childrenを表示するか', () => {
-    render(<Box>Box</Box>);
+    customRender(<Box>Box</Box>);
     expect(screen.getByText('Box')).toBeInTheDocument();
   });
 
   test('role, aria-labelを付与できるか', () => {
-    render(
+    customRender(
       <Box aria-label="ariaLabel" role="cell">
         Box
       </Box>
