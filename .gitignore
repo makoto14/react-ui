@@ -2,3 +2,4 @@ node_modules
 dist
 .reg
 __screenshots__
+coverage
