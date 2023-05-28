@@ -1,19 +1,21 @@
 import { css, SerializedStyles } from '@emotion/react';
-import { forwardRef, HTMLAttributes, ReactNode } from 'react';
+import { ComponentProps, forwardRef, ReactNode } from 'react';
 
-export type BoxProps = HTMLAttributes<HTMLDivElement> & {
+export type BoxProps = Omit<ComponentProps<'div'>, keyof Props> & Props;
+
+type Props = {
   children?: ReactNode;
-  css?: SerializedStyles;
+  sx?: SerializedStyles;
 };
 
 export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
-  { children, css: _css, ...props },
+  { children, sx, ...props },
   ref
 ) {
   return (
     <div
       css={css`
-        ${_css}
+        ${sx}
       `}
       ref={ref}
       {...props}

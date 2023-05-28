@@ -1,6 +1,6 @@
+import { ThemeProvider } from '@emotion/react';
 import { withScreenshot } from 'storycap';
 import { theme } from '../src/theme';
-import { ThemeProvider } from '@emotion/react';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

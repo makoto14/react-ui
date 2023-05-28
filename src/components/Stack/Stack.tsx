@@ -1,9 +1,11 @@
 import { css, SerializedStyles, useTheme } from '@emotion/react';
-import { forwardRef, HTMLAttributes, ReactNode, useMemo } from 'react';
+import { ComponentProps, forwardRef, ReactNode, useMemo } from 'react';
 
-export type StackProps = HTMLAttributes<HTMLDivElement> & {
+export type StackProps = Omit<ComponentProps<'div'>, keyof Props> & Props;
+
+type Props = {
   children?: ReactNode;
-  css?: SerializedStyles;
+  sx?: SerializedStyles;
   direction?: 'column' | 'row';
   alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
   justifyContent?:
@@ -19,7 +21,7 @@ export type StackProps = HTMLAttributes<HTMLDivElement> & {
 export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack(
   {
     children,
-    css: _css,
+    sx,
     direction = 'column',
     alignItems,
     justifyContent,
@@ -57,7 +59,7 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack(
           }
         `;
     }
-  }, [direction, spacing, theme]);
+  }, [direction, spacing, theme.spacing.base]);
 
   return (
     <div
@@ -66,7 +68,7 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack(
         ${spacingCss}
         align-items: ${alignItems};
         justify-content: ${justifyContent};
-        ${_css}
+        ${sx}
       `}
       {...props}
     >

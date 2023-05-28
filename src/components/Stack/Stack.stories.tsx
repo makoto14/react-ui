@@ -14,7 +14,7 @@ export const controls: StoryObj = {
     children: [1, 2, 3, 4, 5, 6].map((elm) => (
       <Box
         key={elm}
-        css={css`
+        sx={css`
           background-color: red;
         `}
       >
@@ -31,7 +31,7 @@ export const Base: StoryObj = {
     children: [1, 2, 3, 4, 5, 6].map((elm) => (
       <Box
         key={elm}
-        css={css`
+        sx={css`
           background-color: red;
         `}
       >

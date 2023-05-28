@@ -1,10 +1,9 @@
 import { css, useTheme } from '@emotion/react';
 import { lighten, rgba } from 'polished';
-import { ButtonHTMLAttributes, ReactNode, forwardRef, useMemo } from 'react';
+import { ComponentProps, ReactNode, forwardRef, useMemo } from 'react';
 import { Size } from '../../types';
 
-export type ButtonProps = Props &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof Props>;
+export type ButtonProps = Props & Omit<ComponentProps<'button'>, keyof Props>;
 
 type Props = {
   children: ReactNode;
