@@ -2,7 +2,9 @@
   "version": "0.2",
   "language": "en",
   "words": [
-    "clsx"
+    "clsx",
+    "pandacss",
+    "outdir"
   ],
   "files": [
     "src/**/*.{ts,tsx}"
