@@ -1,12 +1,13 @@
-import { css, useTheme } from '@emotion/react';
 import {
-  Content,
-  Description,
-  Overlay,
+  Dialog as ArkDialog,
+  DialogBackdrop,
+  DialogContainer,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
   Portal,
-  Root,
-  Title,
-} from '@radix-ui/react-dialog';
+} from '@ark-ui/react';
+import { css, useTheme } from '@emotion/react';
 import { rgba } from 'polished';
 import { FC, ReactNode } from 'react';
 
@@ -26,10 +27,11 @@ export const Dialog: FC<DialogProps> = ({
   action,
 }) => {
   const theme = useTheme();
+
   return (
-    <Root open={open} onOpenChange={onOpenChange}>
+    <ArkDialog open={open} onClose={() => onOpenChange(false)}>
       <Portal>
-        <Overlay
+        <DialogBackdrop
           css={css`
             background-color: ${rgba(theme.colors.grey[400], 0.2)};
             backdrop-filter: blur(4px);
@@ -37,42 +39,45 @@ export const Dialog: FC<DialogProps> = ({
             inset: 0;
           `}
         />
-        <Content
-          css={css`
-            background-color: ${theme.colors.grey[0]};
-            border-radius: ${theme.radius.base}px;
-            box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-              hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90vw;
-            max-width: 450px;
-            max-height: 85vh;
-            padding: 24px;
-          `}
-        >
-          <Title
+        <DialogContainer>
+          <DialogContent
             css={css`
-              margin: 0;
-              font-weight: 500;
-              font-size: 18px;
+              background-color: ${theme.colors.grey[0]};
+              border-radius: ${theme.radius.base}px;
+              box-shadow:
+                hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+                hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+              position: fixed;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 90vw;
+              max-width: 450px;
+              max-height: 85vh;
+              padding: 24px;
             `}
           >
-            {title}
-          </Title>
-          <Description
-            css={css`
-              margin: 10px 0 20px;
-              font-size: 14px;
-            `}
-          >
-            {children}
-          </Description>
-          {action}
-        </Content>
+            <DialogTitle
+              css={css`
+                margin: 0;
+                font-weight: 500;
+                font-size: 18px;
+              `}
+            >
+              {title}
+            </DialogTitle>
+            <DialogDescription
+              css={css`
+                margin: 10px 0 20px;
+                font-size: 14px;
+              `}
+            >
+              {children}
+            </DialogDescription>
+            {action}
+          </DialogContent>
+        </DialogContainer>
       </Portal>
-    </Root>
+    </ArkDialog>
   );
 };
