@@ -85,7 +85,7 @@
     "webpack": "^5.88.2"
   },
   "dependencies": {
-    "@radix-ui/react-dialog": "^1.0.4",
+    "@ark-ui/react": "^1.1.0",
     "clsx": "^2.0.0",
     "polished": "^4.2.2"
   },
