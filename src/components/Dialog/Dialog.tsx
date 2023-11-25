@@ -1,12 +1,4 @@
-import {
-  Dialog as ArkDialog,
-  DialogBackdrop,
-  DialogContainer,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  Portal,
-} from '@ark-ui/react';
+import { Dialog as ArkDialog, Portal } from '@ark-ui/react';
 import { css, useTheme } from '@emotion/react';
 import { rgba } from 'polished';
 import { FC, ReactNode } from 'react';
@@ -29,9 +21,9 @@ export const Dialog: FC<DialogProps> = ({
   const theme = useTheme();
 
   return (
-    <ArkDialog open={open} onClose={() => onOpenChange(false)}>
+    <ArkDialog.Root open={open} onOpenChange={(e) => onOpenChange(e.open)}>
       <Portal>
-        <DialogBackdrop
+        <ArkDialog.Backdrop
           css={css`
             background-color: ${rgba(theme.colors.grey[400], 0.2)};
             backdrop-filter: blur(4px);
@@ -39,8 +31,8 @@ export const Dialog: FC<DialogProps> = ({
             inset: 0;
           `}
         />
-        <DialogContainer>
-          <DialogContent
+        <ArkDialog.Positioner>
+          <ArkDialog.Content
             css={css`
               background-color: ${theme.colors.grey[0]};
               border-radius: ${theme.radius.base}px;
@@ -57,7 +49,7 @@ export const Dialog: FC<DialogProps> = ({
               padding: 24px;
             `}
           >
-            <DialogTitle
+            <ArkDialog.Title
               css={css`
                 margin: 0;
                 font-weight: 500;
@@ -65,19 +57,19 @@ export const Dialog: FC<DialogProps> = ({
               `}
             >
               {title}
-            </DialogTitle>
-            <DialogDescription
+            </ArkDialog.Title>
+            <ArkDialog.Description
               css={css`
                 margin: 10px 0 20px;
                 font-size: 14px;
               `}
             >
               {children}
-            </DialogDescription>
+            </ArkDialog.Description>
             {action}
-          </DialogContent>
-        </DialogContainer>
+          </ArkDialog.Content>
+        </ArkDialog.Positioner>
       </Portal>
-    </ArkDialog>
+    </ArkDialog.Root>
   );
 };
