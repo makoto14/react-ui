@@ -3,7 +3,7 @@
     "outDir": "./dist",
     "lib": ["es2020", "dom"],
     "target": "es2020",
-    "module": "commonjs",
+    "module": "ES2015",
     "moduleResolution": "node",
     "declaration": true,
     "types": ["react", "node", "jest", "@types/testing-library__jest-dom"],
