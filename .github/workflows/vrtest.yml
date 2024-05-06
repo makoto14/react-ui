@@ -21,12 +21,13 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
       - name: setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version-file: 'package.json'
-          cache: 'yarn'
 
       - name: check commit hash
         id: commithash
@@ -49,17 +50,17 @@ jobs:
           sudo apt-get update
           sudo apt-get install fonts-noto
 
-      - name: yarn install main branch
+      - name: pnpm install main branch
         if: steps.check_files.outputs.files_exists == 'false'
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: screenshots main branch
         if: steps.check_files.outputs.files_exists == 'false'
-        run: yarn storycap
+        run: pnpm storycap
 
       - name: run reg-suit main branch
         if: steps.check_files.outputs.files_exists == 'false'
-        run: yarn reg-suit
+        run: pnpm reg-suit
 
       - name: set reg-suit expected
         if: steps.check_files.outputs.files_exists == 'false'
@@ -84,12 +85,13 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
       - name: setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version-file: 'package.json'
-          cache: 'yarn'
 
       - name: Install fonts-noto
         run: |
@@ -100,8 +102,8 @@ jobs:
         run: |
           git checkout ${GITHUB_HEAD_REF#refs/heads/} || git checkout -b ${GITHUB_HEAD_REF#refs/heads/} && git pull
 
-      - name: yarn install
-        run: yarn install --frozen-lockfile
+      - name: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: load reg-suit expecteds
         uses: actions/download-artifact@v3
@@ -110,10 +112,10 @@ jobs:
           path: .reg/
 
       - name: screenshots
-        run: yarn storycap
+        run: pnpm storycap
 
       - name: run reg-suit
-        run: yarn reg-suit
+        run: pnpm reg-suit
 
       - name: upload reg-suit
         uses: actions/upload-artifact@v3

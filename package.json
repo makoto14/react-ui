@@ -85,7 +85,7 @@
     "webpack": "^5.88.2"
   },
   "dependencies": {
-    "@ark-ui/react": "^1.1.0",
+    "@ark-ui/react": "^2.2.3",
     "clsx": "^2.0.0",
     "polished": "^4.2.2"
   },
@@ -106,7 +106,7 @@
     ]
   },
   "volta": {
-    "node": "18.16.0",
-    "yarn": "1.22.19"
+    "node": "20.12.2",
+    "pnpm": "9.0.6"
   }
 }
