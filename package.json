@@ -51,6 +51,7 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.5.3",
+    "@types/node": "^20.12.8",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/testing-library__jest-dom": "^5.14.8",
@@ -85,7 +86,7 @@
     "webpack": "^5.88.2"
   },
   "dependencies": {
-    "@ark-ui/react": "^1.1.0",
+    "@ark-ui/react": "^2.2.3",
     "clsx": "^2.0.0",
     "polished": "^4.2.2"
   },
@@ -95,8 +96,10 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
-  "resolutions": {
-    "@types/react": "^18.2.15"
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^18.2.15"
+    }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -106,7 +109,7 @@
     ]
   },
   "volta": {
-    "node": "18.16.0",
-    "yarn": "1.22.19"
+    "node": "20.12.2",
+    "pnpm": "9.0.6"
   }
 }

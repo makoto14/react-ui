@@ -3,3 +3,4 @@ dist
 .reg
 __screenshots__
 coverage
+.DS_Store

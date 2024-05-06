@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
       - name: Setup NodeJs
         uses: actions/setup-node@v3
         with:
@@ -17,10 +20,10 @@ jobs:
 
       # 依存の解決
       - name: Install node_modules
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: build storybook
-        run: yarn build-storybook
+        run: pnpm build-storybook
 
       - name: deploy storybook
         uses: JamesIves/github-pages-deploy-action@4.1.0
