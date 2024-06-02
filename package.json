@@ -80,7 +80,7 @@
     "reg-suit": "^0.12.2",
     "rimraf": "^5.0.1",
     "standard-version": "^9.5.0",
-    "storybook": "^7.1.0",
+    "storybook": "^8.1.5",
     "storycap": "^4.1.2",
     "typescript": "^5.1.6",
     "webpack": "^5.88.2"
