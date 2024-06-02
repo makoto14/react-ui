@@ -76,7 +76,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "reg-keygen-git-hash-plugin": "^0.12.2",
-    "reg-notify-github-plugin": "^0.12.2",
+    "reg-notify-github-plugin": "^0.14.4",
     "reg-suit": "^0.12.2",
     "rimraf": "^5.0.1",
     "standard-version": "^9.5.0",
